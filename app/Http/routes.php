@@ -12,5 +12,15 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
+});
+
+Route::group(['prefix' => 'api'], function()
+{
+    Route::post('authenticate', 'AuthenticateController@authenticate');
+
+    Route::group(['middleware' => 'jwt.auth'], function()
+    {
+        Route::resource('task', 'TaskController');
+    });
 });
