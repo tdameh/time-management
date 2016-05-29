@@ -8,28 +8,36 @@
         .controller('AuthController', AuthController);
 
 
-    function AuthController($auth, $state, $localStorage, $rootScope) {
+    function AuthController($scope, $rootScope, $auth, $state, $localStorage) {
 
-        var vm = this;
-
-        vm.loginError = false;
-        vm.loginErrorText;
-
-        vm.login = function() {
-
+        $scope.login = function() {
             var credentials = {
-                email: vm.email,
-                password: vm.password
+                email: $scope.email,
+                password: $scope.password
             }
-
-            // Use Satellizer's $auth service to login
             $auth.login(credentials).then(function(response) {
                 $localStorage.user = response.data.user;
                 $rootScope.user = $localStorage.user;
                 $state.go('tasks');
             }, function(error) {
-                vm.loginError = true;
-                vm.loginErrorText = error.data.error;
+                $scope.loginError = true;
+                $scope.loginErrorText = error.data.error;
+            });
+        }
+
+        $scope.signup = function() {
+            var credentials = {
+                email: $scope.email,
+                password: $scope.password
+            }
+            $auth.signup(credentials).then(function(response) {
+                $auth.setToken(response.data.token);
+                $localStorage.user = response.data.user;
+                $rootScope.user = $localStorage.user;
+                $state.go('tasks');
+            }, function(error) {
+                $scope.signupError = true;
+                $scope.signupErrorText = error.data.error;
             });
         }
 

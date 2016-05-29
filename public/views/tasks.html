@@ -22,7 +22,7 @@
                 <div class="col-xs-3" ng-if="user.is_admin || user.is_manager">
                     <label for="user">User</label>
                     <select id="user" ng-model="task.user_id" class="form-control" ng-disabled="action=='Update'">
-                        <option ng-repeat="user in users" value="{{user.id}}">{{user.name}}</option>
+                        <option ng-repeat="user in users" value="{{user.id}}">{{user.email}}</option>
                     </select>
                 </div>
             </div>
@@ -49,7 +49,7 @@
                 <td>{{task.description}}</td>
                 <td>{{task.date}}</td>
                 <td>{{task.hours}}</td>
-                <th ng-if="user.is_admin || user.is_manager">{{task.user.name}}</th>
+                <th ng-if="user.is_admin || user.is_manager">{{task.user.email}}</th>
                 <td>
                     <span ng-click="activeTask(task)"><i class="glyphicon glyphicon-pencil"></i></span>&nbsp;&nbsp;
                     <span class="text-danger" ng-click="delete(task)"><i class="glyphicon glyphicon-trash"></i></span>

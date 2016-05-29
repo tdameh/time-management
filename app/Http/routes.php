@@ -18,6 +18,7 @@ Route::get('/', function () {
 Route::group(['prefix' => 'api'], function()
 {
     Route::post('login', 'AuthenticateController@login');
+    Route::post('signup', 'AuthenticateController@signup');
 
     Route::group(['middleware' => 'jwt.auth'], function()
     {

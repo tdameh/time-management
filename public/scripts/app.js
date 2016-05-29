@@ -26,18 +26,19 @@
             $httpProvider.interceptors.push('httpRequestInterceptor');
 
             $authProvider.loginUrl = '/api/login';
+            $authProvider.signupUrl = '/api/signup';
             $urlRouterProvider.otherwise('/tasks');
             
             $stateProvider
                 .state('login', {
                     url: '/login',
                     templateUrl: '../views/login.html',
-                    controller: 'AuthController as auth'
+                    controller: 'AuthController as vm'
                 })
                 .state('signup', {
                     url: '/signup',
                     templateUrl: '../views/signup.html',
-                    controller: 'AuthController as auth'
+                    controller: 'AuthController as vm'
                 })
                 .state('tasks', {
                     url: '/tasks',

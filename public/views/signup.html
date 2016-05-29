@@ -2,16 +2,16 @@
 
 <div class="col-sm-4 col-sm-offset-4">
     <div class="well">
-        <h3>Signup</h3>
+        <h3>Sign up</h3>
         <form>
-            <p class="alert alert-danger" ng-if="auth.loginError"><strong>Error:</strong> {{auth.loginErrorText}}</p>
+            <p class="alert alert-danger" ng-if="signupError"><strong>Error:</strong> {{signupErrorText}}</p>
             <div class="form-group">
-                <input type="email" class="form-control" placeholder="Email" ng-model="auth.email">
+                <input type="email" class="form-control" placeholder="Email" ng-model="email" required>
             </div>
             <div class="form-group">
-                <input type="password" class="form-control" placeholder="Password" ng-model="auth.password">
+                <input type="password" class="form-control" placeholder="Password" ng-model="password" required>
             </div>
-            <button class="btn btn-primary" ng-click="auth.signup()">Sing up</button>
+            <button class="btn btn-primary" ng-click="signup()">Sing up</button>
         </form>
     </div>
 </div>

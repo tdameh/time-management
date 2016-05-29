@@ -36,6 +36,34 @@ class AuthenticateController extends Controller
         return response()->json(compact('token', 'user'));
     }
 
+
+    /**
+     * Singup and Return a JWT
+     *
+     * @return Response
+     */
+    public function signup(Request $request)
+    {
+        $this->validate($request, [
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
+        try {
+            if (User::where('email', $request->email)->first()) {
+                return response()->json(['error' => 'User already exists'], 401);
+            }
+            $user = User::create([
+                'email' => $request->email, 
+                'password' => \Hash::make($request->password), 
+                'working_hours' => 0
+            ]);
+        } catch (Exception $e) {
+            return response()->json(['error' => $e->getMessage()]);
+        }
+        $token = JWTAuth::fromUser($user);
+        return response()->json(compact('token', 'user'));
+    }
+
     /**
      * logout
      */
