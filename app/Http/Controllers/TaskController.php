@@ -43,7 +43,8 @@ class TaskController extends Controller
         $this->validate($request, self::VALID_RULES);
 
         $task = $request->user()->createTask($request->all());
-
+        $task->user;
+        
         return $task;
     }
 

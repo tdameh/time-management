@@ -1,0 +1,61 @@
+<div ng-include src="'views/appMenu.html'"></div>
+
+<div class="col-sm-12">
+    <div class="well">
+        <h3>Tasks</h3>
+
+        <form ng-submit="save()" name="form">
+            <p class="alert alert-danger" ng-if="error"><strong>Error:</strong> {{error}} </p>
+            <div class="form-group row">
+                <div class="col-xs-5">
+                    <label for="description">Description</label>
+                    <input type="text" class="form-control" id="description" ng-model="task.description" required>
+                </div>
+                <div class="col-xs-3">
+                    <label for="date">Date</label>
+                    <input type="text" data-provide="datepicker" data-date-format="yyyy-mm-dd" class="form-control" id="date" ng-model="task.date" required>
+                </div>
+                <div class="col-xs-1">
+                    <label for="hours">Hours</label>
+                    <input type="number" min="0" class="form-control" id="hours" ng-model="task.hours" required>
+                </div>
+                <div class="col-xs-3" ng-if="user.is_admin || user.is_manager">
+                    <label for="user">User</label>
+                    <select id="user" ng-model="task.user_id" class="form-control" ng-disabled="action=='Update'">
+                        <option ng-repeat="user in users" value="{{user.id}}">{{user.name}}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-12">
+                    <button type="submit" class="form-control btn btn-primary" ng-disabled="form.$invalid">{{action}}</button>
+                </div>
+            </div>
+        </form>
+
+        <table datatable="ng" class="row-border hover">
+            <thead>
+            <tr>
+                <th>Description</th>
+                <th>Date</th>
+                <th>Hours</th>
+                <th ng-if="user.is_admin || user.is_manager">User</th>
+                <th data-orderable="false"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="task in tasks">
+                <td>{{task.description}}</td>
+                <td>{{task.date}}</td>
+                <td>{{task.hours}}</td>
+                <th ng-if="user.is_admin || user.is_manager">{{task.user.name}}</th>
+                <td>
+                    <span ng-click="activeTask(task)"><i class="glyphicon glyphicon-pencil"></i></span>&nbsp;&nbsp;
+                    <span class="text-danger" ng-click="delete(task)"><i class="glyphicon glyphicon-trash"></i></span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

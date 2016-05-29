@@ -1,0 +1,23 @@
+<div ng-include src="'views/appMenu.html'"></div>
+
+<div class="col-sm-12">
+    <div class="well">
+        <h3>Settings</h3>
+
+        <form ng-submit="update()">
+            <div class="form-group row"> 
+                <label for="hours" class="col-sm-3 form-control-label">Preferred Working Hour Per Day</label>
+                <div class="col-sm-8">
+                    <input type="number" min="0" class="form-control" id="hours" ng-model="working_hours">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-offset-3 col-sm-8">
+                    <button type="submit" class="btn btn-primary">Update</button>
+                </div>
+            </div>
+        </form>        
+
+    </div>
+</div>

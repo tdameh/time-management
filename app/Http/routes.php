@@ -17,10 +17,12 @@ Route::get('/', function () {
 
 Route::group(['prefix' => 'api'], function()
 {
-    Route::post('authenticate', 'AuthenticateController@authenticate');
+    Route::post('login', 'AuthenticateController@login');
 
     Route::group(['middleware' => 'jwt.auth'], function()
     {
+        Route::post('logout', 'AuthenticateController@logout');
+        Route::resource('user', 'UserController');
         Route::resource('task', 'TaskController');
     });
 });
