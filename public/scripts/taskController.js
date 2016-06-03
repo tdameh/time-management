@@ -97,7 +97,6 @@
         }
 
         $scope.dayStatus = function() {
-            console.log($rootScope.users);
             var result = [];
             _.forEach($scope.tasks, function(task) {
                 if(task.user) {
