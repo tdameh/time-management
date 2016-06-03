@@ -85,7 +85,7 @@
                 activeTasks = $scope.tasks;
             }
 
-            if ($scope.userFilter) {
+            if ($scope.userFilter && $scope.userFilter != 'all') {
                 _.forEach(activeTasks, function(task) {
                     if (task.user.email == $scope.userFilter) {
                         $scope.activeTasks.push(task);

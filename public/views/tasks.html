@@ -48,6 +48,7 @@
                 <label for="user_filter">User</label>
                 <select id="user_filter" class="form-control" ng-model="userFilter">
                     <option ng-repeat="user in users" value="{{user.email}}">{{user.email}}</option>
+                    <option value="all">All Users</option>
                 </select>
             </div>
             <div class="col-xs-3">
