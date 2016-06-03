@@ -16,7 +16,7 @@
                     $rootScope.error = rejection.data.error;
                     $timeout(function () {
                         $rootScope.error = false;
-                    }, 2000);
+                    }, 4000);
                     return $q.reject(rejection);
                 }
             };        
@@ -49,6 +49,11 @@
                     url: '/settings',
                     templateUrl: '../views/settings.html',
                     controller: 'SettingController as vm'
+                })
+                .state('export', {
+                    url: '/export',
+                    templateUrl: '../views/export.html',
+                    controller: 'ExportController as vm'
                 });
 
             NotificationProvider.setOptions({

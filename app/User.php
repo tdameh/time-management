@@ -31,13 +31,13 @@ class User extends Authenticatable
     {
         if ($this->is_admin) {
             return Task::with(['user'=>function($query){
-                $query->select('id','name');
+                $query->select('id','email');
             }]);
         } elseif ($this->is_manager) {
             $users = $this->users->lists('id')->toArray();
             array_push($users, $this->id);
             return Task::whereIn('user_id', $users)->with(['user'=>function($query){
-                $query->select('id','name');
+                $query->select('id','email');
             }]);
         }
 

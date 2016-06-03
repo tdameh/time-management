@@ -1,0 +1,17 @@
+<div ng-include src="'views/appMenu.html'"></div>
+
+<div class="col-sm-12">
+    <div class="well">
+        <h3>Export</h3>
+        <ul ng-if="activeTasks">
+            <li>Dates: {{startDate}} - {{endDate}}</li>
+            <li>Total time: {{totalHours}}h</li>
+            <li ng-if="userFilter">user: {{userFilter}}</li>
+            <li>Notes:
+                <ul>
+                    <li ng-repeat="task in activeTasks">{{task.description}}</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>

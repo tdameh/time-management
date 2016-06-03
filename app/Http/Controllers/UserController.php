@@ -19,7 +19,9 @@ class UserController extends Controller
         if ($request->user()->is_admin) {
             return User::all();
         } elseif ($request->user()->is_manager) {
-            return $request->user()->users()->get();
+            $users = $request->user()->users()->get()->toArray();
+            array_push($users, $request->user());
+            return $users;
         }
 
         return $request->user();

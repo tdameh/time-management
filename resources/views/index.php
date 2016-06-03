@@ -34,4 +34,5 @@
     <script src="scripts/authController.js"></script>
     <script src="scripts/taskController.js"></script>
     <script src="scripts/settingController.js"></script>
+    <script src="scripts/exportController.js"></script>
 </html>
