@@ -99,7 +99,7 @@
         $scope.dayStatus = function() {
             var result = [];
             _.forEach($scope.tasks, function(task) {
-                if(task.user) {
+                if($rootScope.user.is_admin || $rootScope.user.is_manager) {
                     var t = _.find(result, {user:task.user.id, date: task.date});
                     if (t) {
                         t.hours += task.hours;
@@ -115,10 +115,9 @@
                     }
                 }
             });
-
             _.forEach($scope.tasks, function(task) {
-                var t = _.find(result, {date: task.date});
-                if (t.user) {
+                if ($rootScope.user.is_admin || $rootScope.user.is_manager) {
+                    var t = _.find(result, {user:task.user.id, date: task.date});
                     var u = _.find($rootScope.users, {id: t.user});
                     if (t.hours < u.working_hours) {
                         task.class = 'text-danger';
@@ -126,6 +125,7 @@
                         task.class = 'text-success';
                     }
                 } else {
+                    var t = _.find(result, {date: task.date});
                     if (t.hours < $rootScope.user.working_hours) {
                         task.class = 'text-danger';
                     } else {
