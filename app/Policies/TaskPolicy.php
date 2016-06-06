@@ -57,7 +57,7 @@ class TaskPolicy
         if ($user->is_admin) {
             return true;
         } elseif ($user->is_manager) {
-            return $user->id === $task->user->manager_id;
+            return $user->id === $task->user->manager_id || $user->id === $task->user_id;
         }
 
         return $user->id === $task->user_id;
