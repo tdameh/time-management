@@ -23,7 +23,7 @@ class UserPolicy
         if ($user->is_admin) {
             return true;
         } elseif ($user->is_manager) {
-            return $user->id === $userToUpdate->manager_id;
+            return $user->id === $userToUpdate->manager_id || $user->id === $userToUpdate->id;
         }
 
         return $user->id === $userToUpdate->id;
