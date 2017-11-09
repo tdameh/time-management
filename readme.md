@@ -46,7 +46,7 @@ MAIL_ENCRYPTION=null
 
 ## Installing
 
-In root directory, run the following commands to install decencies and to migrate database schema:
+In root directory, run the following commands to install dependencies and to migrate database schema:
 
 ```term
 $ composer install
